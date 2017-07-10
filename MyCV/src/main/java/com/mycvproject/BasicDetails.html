@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Details Page</title>
+</head>
+
+<body>
+	<h2><center>Basic Details for CV</center></h2>
+	
+	<div wicket:id="feedback"></div>
+	
+	<form wicket:id="userForm" method="post">
+	<!-- Adding Inputs for Basic Details -->
+	
+	<h4>Username : </h4><input type="text" wicket:id="uName"><br>
+	<h4>Date of Birth : </h4><input type="text" wicket:id="uDOB"><br>
+
+	<h4>Gender : </h4><span wicket:id="uGender"></span><br><br>
+	
+	<h4>Current Address : </h4><br>
+	<textarea rows="5" cols="60" wicket:id="uAddress"></textarea><br>
+	
+	<h4>Cover Letter : </h4><br>
+	<textarea rows="5" cols="60" wicket:id="uLetter"></textarea><br>
+	
+	<input type="submit" value="Save Details">
+	</form>
+	
+</body>
+</html>
