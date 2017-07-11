@@ -8,7 +8,27 @@
 
 	<h4><center>Welcome to Education Page</center></h4>
 
-	<Label wicket:id="edu"></Label>
+	<!-- Adding Feedback component -->
+	<div wicket:id="feedback"></div>
+
+	<!-- Adding form components -->
+	
+	<form action="submit" method="post" wicket:id="eduForm">
+	
+	<center>
+	<input type="button" value="Add Education" wicket:id="eduAdd"><br><br>
+	
+	<!-- Adding Education List -->
+	<select wicket:id="eduList"></select><br><br>
+	
+	<h3>Education : </h3> <textarea rows = "1" cols= "20" wicket:id="eduArea"></textarea>
+	<input type="button" value = "update" wicket:id="eduUpdate" ><br><br> 
+	
+	<!-- Adding Save Details Button -->
+	<input type="submit" value = "Save Details">
+	</center>
+	
+	</form>
 
 </body>
 </html>
