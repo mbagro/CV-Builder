@@ -26,6 +26,7 @@ public class EducationDetails extends WebPage {
 		//Adding FeedBack Panel.
 		add(new FeedbackPanel("feedback"));
 		
+		
 		//Adding Education Choices.
 		eduListChoice.add("undergraduate");
 		eduListChoice.add("Graduate");
@@ -49,7 +50,7 @@ public class EducationDetails extends WebPage {
 				eduArea.setModelObject(eduSelected);
 			}
 		};
-		eduAddButton.setDefaultFormProcessing(false);
+		//eduAddButton.setDefaultFormProcessing(false);
 		
 		//Adding Update Button.
 		Button eduUpdateButton = new Button("eduUpdate") {
@@ -59,6 +60,7 @@ public class EducationDetails extends WebPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
+				eduArea.setEnabled(true);
 			}
 		};
 		eduUpdateButton.setDefaultFormProcessing(false);
