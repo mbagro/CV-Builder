@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Welcome Success Page</title>
-</head>
-<body>
 
-	<h4><center>Welcome to Education Page</center></h4>
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome to Education Page</title>
+	
+	<style>
+
+.buttonStyle {
+    background-color: #1f3a1f; 
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.center {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #24a045;
+	padding: 5px;
+}
+
+</style>
+	
+</head>
+
+<body bgcolor = "brown">
+
+	<h4><center>CV Education Page</center></h4>
 
 	<!-- Adding Feedback component -->
 	<div wicket:id="feedback"></div>
 
 	<!-- Adding form components -->
-	
+
+	<div class="center">	
 	<form action="submit" method="post" wicket:id="eduForm">
 	
-	<center>
-	<input type="button" value="Add Education" wicket:id="eduAdd"><br><br>
+	<input type="submit" value="Add Education" wicket:id="eduAdd" class="buttonStyle"><br><br>
 	
 	<!-- Adding Education List -->
 	<select wicket:id="eduList"></select><br><br>
 	
-	<h3>Education : </h3> <textarea rows = "1" cols= "20" wicket:id="eduArea"></textarea>
-	<input type="button" value = "update" wicket:id="eduUpdate" ><br><br> 
+	<h4><font color="#24b9c1">Education </font></h4><textarea rows = "1" cols= "20" wicket:id="eduArea"></textarea>
+	<input type="submit" value = "update" wicket:id="eduUpdate" class="buttonStyle"><br><br> 
 	
 	<!-- Adding Save Details Button -->
-	<input type="submit" value = "Save Details">
-	</center>
-	
+	<input type="submit" value = "Save Details" class="buttonStyle">
+	<input type="submit" value="Go Home!" class = "buttonStyle" wicket:id="HomeBtn">
 	</form>
-
+	</div>
+	
 </body>
 </html>

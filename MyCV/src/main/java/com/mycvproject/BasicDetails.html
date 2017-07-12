@@ -4,13 +4,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Basic Details Page</title>
+<style>
+
+.center {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #FFFFFF;
+	padding: 5px;
+}
+
+.buttonStyle {
+    background-color: #24a045; 
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+</style>
+
 </head>
 
-<body>
+<body bgcolor="brown">
 	<h2><center>Basic Details for CV</center></h2>
 	
 	<div wicket:id="feedback"></div>
 	
+	<div class = "center">
 	<form wicket:id="userForm" method="post">
 	<!-- Adding Inputs for Basic Details -->
 	
@@ -23,10 +46,13 @@
 	<textarea rows="5" cols="60" wicket:id="uAddress"></textarea><br>
 	
 	<h4>Cover Letter : </h4><br>
-	<textarea rows="5" cols="60" wicket:id="uLetter"></textarea><br>
+	<textarea rows="5" cols="60" wicket:id="uLetter"></textarea><br><br>
 	
-	<input type="submit" value="Save Details">
+	<input type="submit" value="Save Details" class = "buttonStyle">
+	<input type="submit" value="Go Home!" class = "buttonStyle" wicket:id="HomeBtn">
+	
 	</form>
+	</div>
 	
 </body>
 </html>

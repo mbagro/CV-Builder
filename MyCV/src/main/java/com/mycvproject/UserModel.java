@@ -2,7 +2,7 @@ package com.mycvproject;
 
 //User Property Model POJO Class for User Basic Details.
 
-public class userModel {
+public class UserModel {
 
 	//Property Fields.
 	private String userName;

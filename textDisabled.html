@@ -1,0 +1,36 @@
+<html>
+
+<body>
+
+<script type="text/javascript">
+
+
+function keyDisable(event)
+{
+
+window.addEventListener('keydown', function (event) {
+
+if (event.keyCode == 13) //ASCII of Return \n is 13
+	event.preventDefault(); //Prevents other events to occur.
+	
+});
+
+}
+
+</script> 
+
+<form action="/action_page.php">
+Name : <input type="text" name = "firstname" id = "nameID" 
+onkeypress="keyDisable(this)"> <br>
+
+Phone : <input type="text" name = "phone" id = "phoneID"> <br>
+
+<input type="Submit" value="Submit">
+
+</form>
+
+
+
+</body>
+
+</html>

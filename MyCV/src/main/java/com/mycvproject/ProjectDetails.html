@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Welcome Success Page</title>
+	<meta charset="UTF-8">
+	<title>Welcome to Project Page</title>
+
+<style>
+
+
+
+.buttonStyle {
+    background-color: #1f3a1f; 
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.center {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #24a045;
+	padding: 5px;
+}
+
+</style>
+
 </head>
-<body>
 
-	<h4><center>Welcome to Project Page</center></h4>
+<body bgcolor = "brown">
 
-	<Label wicket:id="pro"></Label>
+	<h2><center>CV Project Page</center></h2>
+	
+	<div wicket:id="feedback"></div>
 
+	<div class = "center">
+	<form action="submit" method="post" wicket:id="pForm">
+		
+	<!-- Adding Project Title Input -->
+	<h4><font color = "#FFFFFF">Enter Project Title</font></h4><input type="text" wicket:id="projectTitle"><br><br>
+	
+	<!-- Adding Project Details Input-->
+	<h4><font color = "#FFFFFF">Enter Project Details</font></h4><textarea rows="6" cols="40" wicket:id="projectDetails"></textarea>
+	
+		<!-- Adding Add Project Button -->
+	<input type="submit" value="Add Project" wicket:id="addProjBtn" class = "buttonStyle"><br><br>
+	
+	<!-- Adding Project Title Added section -->
+	<h4><font color="#24b9c1"> Project Title </font></h4>
+	<input type="text" wicket:id="pTitleSection"><br>
+	
+	<!-- Adding Project Details Added section -->
+	<h4><font color="#24b9c1"> Project Details </font></h4>
+	<textarea rows="6" cols="40" wicket:id="pDetailsSection"></textarea>
+	
+	<!-- Adding Update Details Button -->
+	<input type = "submit" wicket:id="updateProjBtn" value = "Update Project" class = "buttonStyle"><br>
+	
+	<!-- Adding Save Details Button -->
+	<input type = "submit" value ="Save Details" class = "buttonStyle">
+	<input type="submit" value="Go Home!" class = "buttonStyle" wicket:id="HomeBtn">
+	</form>
+	
+	</div>
+	
 </body>
 </html>

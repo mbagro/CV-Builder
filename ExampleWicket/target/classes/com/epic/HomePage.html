@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<title>Wicket User Form Page</title>
+<style>
+.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div wicket:id="feedback"></div>
+
+
+	<form wicket:id="userForm" method="post">
+			
+			<div class="center">
+			<h2>Welcome to Wicket Demo Form</h2>
+			
+			<label>Name</label>
+			<input type="text" size="20" wicket:id="userName" /><br><br> 
+			
+			<!--<label>Pass</label>
+			<input type="password" size="20" wicket:id="userPass" /><br><br>--> 
+			
+			<label>Email</label>
+			<input type="text" size="20" wicket:id="userEmail" onkeydown=keyDisable.js /><br><br> 
+			
+			<label>Phone</label>
+			<input type="text" size="20" wicket:id="userPhone" /><br><br> 
+			
+			<label>Male</label>
+			<input type="checkbox" wicket:id="mCheck">
+			
+			<label>Female</label>
+			<input type="checkbox" wicket:id="fCheck"><br>
+			
+			<input type="submit" value="Submit" />
+	</div>
+	</form>
+
+</body>
+</html>
