@@ -70,7 +70,7 @@ public class BasicDetails extends WebPage {
 		uDOB.add(dPicker);
 		uDOB.setRequired(true);*/
 		
-		//Adding DOB witout DatePicker.
+		//Adding DOB without DatePicker.
 		TextField<Date> uDOB = new TextField<Date>("uDOB", new PropertyModel<Date>(uModel, "userDOB"));
 		uDOB.setRequired(true);
 		uDOB.add(DateValidator.range("01/01/1800", "31/31/2050"));

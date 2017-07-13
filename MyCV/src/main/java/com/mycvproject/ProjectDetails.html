@@ -41,27 +41,41 @@
 	<form action="submit" method="post" wicket:id="pForm">
 		
 	<!-- Adding Project Title Input -->
-	<h4><font color = "#FFFFFF">Enter Project Title</font></h4><input type="text" wicket:id="projectTitle"><br><br>
+	<h4><font color = "#FFFFFF">Enter Project Title</font></h4><input type="text" wicket:id="projectTitle">
+	
+	<!-- Adding Add Project Button -->
+	<input type="submit" value="Add Project" wicket:id="addProjBtn" class = "buttonStyle"><br><br>
 	
 	<!-- Adding Project Details Input-->
 	<h4><font color = "#FFFFFF">Enter Project Details</font></h4><textarea rows="6" cols="40" wicket:id="projectDetails"></textarea>
 	
-		<!-- Adding Add Project Button -->
-	<input type="submit" value="Add Project" wicket:id="addProjBtn" class = "buttonStyle"><br><br>
+	<!-- Adding Project1 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pTitleLbl1"></span></font></h4>
+	<input type="text" wicket:id="pTitleSection1"><br>
 	
-	<!-- Adding Project Title Added section -->
-	<h4><font color="#24b9c1"> Project Title </font></h4>
-	<input type="text" wicket:id="pTitleSection"><br>
+	<!-- Adding Project1 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pDetailsLbl1"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="pDetailsSection1"></textarea><br>
 	
-	<!-- Adding Project Details Added section -->
-	<h4><font color="#24b9c1"> Project Details </font></h4>
-	<textarea rows="6" cols="40" wicket:id="pDetailsSection"></textarea>
+		<!-- Adding Project2 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pTitleLbl2"></span></font></h4>
+	<input type="text" wicket:id="pTitleSection2"><br>
 	
-	<!-- Adding Update Details Button -->
-	<input type = "submit" wicket:id="updateProjBtn" value = "Update Project" class = "buttonStyle"><br>
+	<!-- Adding Project2 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pDetailsLbl2"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="pDetailsSection2"></textarea><br>
 	
-	<!-- Adding Save Details Button -->
+		<!-- Adding Project3 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pTitleLbl3"></span></font></h4>
+	<input type="text" wicket:id="pTitleSection3"><br>
+	
+	<!-- Adding Project3 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="pDetailsLbl3"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="pDetailsSection3"></textarea><br>
+		
+	<!-- Adding Buttons -->
 	<input type = "submit" value ="Save Details" class = "buttonStyle">
+	<input type = "submit" wicket:id="updateProjBtn" value = "Update Project" class = "buttonStyle">
 	<input type="submit" value="Go Home!" class = "buttonStyle" wicket:id="HomeBtn">
 	</form>
 	

@@ -31,7 +31,7 @@
 
 <body bgcolor = "brown">
 
-	<h4><center>CV Education Page</center></h4>
+	<h2><center>Education Details for CV</center></h2>
 
 	<!-- Adding Feedback component -->
 	<div wicket:id="feedback"></div>
@@ -41,17 +41,25 @@
 	<div class="center">	
 	<form action="submit" method="post" wicket:id="eduForm">
 	
-	<input type="submit" value="Add Education" wicket:id="eduAdd" class="buttonStyle"><br><br>
+	<!--  Adding Add Education Button -->
+	<input type="submit" value="Add Education" wicket:id="eduAdd" class="buttonStyle">
 	
 	<!-- Adding Education List -->
 	<select wicket:id="eduList"></select><br><br>
 	
-	<h4><font color="#24b9c1">Education </font></h4><textarea rows = "1" cols= "20" wicket:id="eduArea"></textarea>
-	<input type="submit" value = "update" wicket:id="eduUpdate" class="buttonStyle"><br><br> 
+	<!-- Adding Education Select Area Section -->
+	<h4><font color="#24b9c1"><span wicket:id="eduLabel1"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="eduArea1"></textarea><br>
 	
-	<!-- Adding Save Details Button -->
+	<h4><font color="#24b9c1"><span wicket:id="eduLabel2"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="eduArea2"></textarea><br>
+	
+	<h4><font color="#24b9c1"><span wicket:id="eduLabel3"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="eduArea3"></textarea><br><br>
+		
+	<!-- Adding Buttons -->
+	
 	<input type="submit" value = "Save Details" class="buttonStyle">
+	<input type="submit" value = "Update Details" wicket:id="eduUpdate" class="buttonStyle">
 	<input type="submit" value="Go Home!" class = "buttonStyle" wicket:id="HomeBtn">
+	
 	</form>
 	</div>
 	
