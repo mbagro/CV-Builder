@@ -19,27 +19,15 @@ public class EducationDetails extends WebPage {
 	private static final long serialVersionUID = 1L;
 
 	// Adding Education List Field.
-	private List<String> eduListChoice = Arrays.asList(new String[]
-	{
-		"Undergraduate/Matriculation",
-		"Undergraduate/Higher Secondary",
-		"Graduate/B.tech",
-		"Graduate/B.E",
-		"Graduate/BSC",
-		"Graduate/BBA",
-		"Graduate/BCA",
-		"Graduate/BCOM",
-		"Post Graduate/M.Tech",
-		"Post Graduate/MCA",
-		"Post Graduate/MCOM",
-		"Post Graduate/MSC",
-		"Post Graduate/MBA",
-	});
-	
-	//User Property Model Field.
+	private List<String> eduListChoice = Arrays.asList(new String[] { "Undergraduate/Matriculation",
+			"Undergraduate/Higher Secondary", "Graduate/B.tech", "Graduate/B.E", "Graduate/BSC", "Graduate/BBA",
+			"Graduate/BCA", "Graduate/BCOM", "Post Graduate/M.Tech", "Post Graduate/MCA", "Post Graduate/MCOM",
+			"Post Graduate/MSC", "Post Graduate/MBA", });
+
+	// User Property Model Field.
 	private UserPropModel uPropModel = new UserPropModel();
 
-	//Education Area Enum.
+	// Education Area Enum.
 	private enum eduAreaStateEnum {
 		EDU_AREA_0, EDU_AREA_1, EDU_AREA_2, EDU_AREA_3;
 	};
@@ -69,6 +57,23 @@ public class EducationDetails extends WebPage {
 		eduArea1.setOutputMarkupId(true);
 		eduArea1.setRequired(true);
 
+		eduArea1.add(new OnChangeAjaxBehavior() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onUpdate(AjaxRequestTarget target) {
+				// TODO Auto-generated method stub
+				try {
+					eduListChoice.add(eduArea1.getModelObject());
+					target.add(eduDropDown);
+				} catch (Exception e) {
+					info("Exception " + e.getLocalizedMessage());
+				}
+
+			}
+		});
+
 		// Adding Education Label2
 		final Label eduLabel2 = new Label("eduLabel2", "Education2");
 		eduLabel2.setVisible(false);
@@ -80,7 +85,7 @@ public class EducationDetails extends WebPage {
 		eduArea2.setVisible(false);
 		eduArea2.setOutputMarkupId(true);
 		eduArea2.setRequired(true);
-		
+
 		// Adding Education Label3
 		final Label eduLabel3 = new Label("eduLabel3", "Education3");
 		eduLabel3.setVisible(false);
@@ -92,7 +97,7 @@ public class EducationDetails extends WebPage {
 		eduArea3.setVisible(false);
 		eduArea3.setOutputMarkupId(true);
 		eduArea3.setRequired(true);
-		
+
 		// Adding AddEducation Button.
 		Button eduAddButton = new Button("eduAdd") {
 
@@ -115,7 +120,7 @@ public class EducationDetails extends WebPage {
 					eduLabel2.setVisible(true);
 					eduArea2.setVisible(true);
 					eduArea2.setModelObject(uPropModel.getEducationChoice());
-					
+
 					eduAreaState = eduAreaStateEnum.EDU_AREA_2;
 				} else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2) {
 					eduLabel3.setVisible(true);
@@ -189,9 +194,19 @@ public class EducationDetails extends WebPage {
 
 				try {
 
-					info("Education 1 : " + eduArea1.getModelObject());
-					info("Education 2 : " + eduArea2.getModelObject());
-					info("Education 3 : " + eduArea3.getModelObject());
+					if (eduAreaState == eduAreaStateEnum.EDU_AREA_1)
+						info("Education 1 : " + eduArea1.getModelObject());
+
+					else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2) {
+						info("Education 1 : " + eduArea1.getModelObject());
+						info("Education 2 : " + eduArea2.getModelObject());
+					}
+
+					else if (eduAreaState == eduAreaStateEnum.EDU_AREA_3) {
+						info("Education 1 : " + eduArea1.getModelObject());
+						info("Education 2 : " + eduArea2.getModelObject());
+						info("Education 3 : " + eduArea3.getModelObject());
+					}
 
 				} catch (NullPointerException ex) {
 					info("Exception on Input : " + ex.getLocalizedMessage());
@@ -200,16 +215,16 @@ public class EducationDetails extends WebPage {
 			}
 
 		};
-
-		// Adding Home Button.
-		Button HomeButton = new Button("HomeBtn") {
+ 
+		// Adding Next Button.
+		Button nextButton = new Button("NextBtn") {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				setResponsePage(HomePage.class);
+				setResponsePage(ProjectDetails.class);
 
 			}
 		}.setDefaultFormProcessing(false);
@@ -225,7 +240,7 @@ public class EducationDetails extends WebPage {
 		eduForm.add(eduLabel3);
 		eduForm.add(eduArea3);
 		eduForm.add(eduUpdateButton);
-		eduForm.add(HomeButton);
+		eduForm.add(nextButton);
 	}
 
 }

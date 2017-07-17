@@ -2,8 +2,6 @@ package com.mycvproject;
 
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.WebPage;
@@ -15,13 +13,12 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.validation.validator.DateValidator;
 import org.apache.wicket.validation.validator.PatternValidator;
 
 public class BasicDetails extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-	private UserModel uModel = new UserModel();
+	protected transient UserModel uModel = new UserModel();
 	private ArrayList<String> genderChoices = new ArrayList<String>();
 	private final String charPattern = "[^0-9]*?"; // Discard numbers 0-9
 
@@ -32,48 +29,19 @@ public class BasicDetails extends WebPage {
 		genderChoices.add("Female");
 
 		// Adding FeedBack panel.
-		FeedbackPanel fbPnl = new FeedbackPanel("feedback");
-		add(fbPnl);
-		
-	
-		// Adding Form
-		Form<Void> mForm = new Form<Void>("userForm") {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void onSubmit() {
-					
-				try {
-					info("Username : " + uModel.getName());
-					info("DOB : " + uModel.getDOB());
-					info("Gender : " + uModel.getGender());
-					info("Address : " + uModel.getAddress());
-					info("Cover Letter : " + uModel.getCoverLetter());
-				} catch (NullPointerException ex) {
-					System.out.println("Exception occured IN : " + ex.getLocalizedMessage());
-				}
-			}
-
-		};
+		add(new FeedbackPanel("feedback"));
 		
 		// Adding UserName Component.
-		TextField<String> uName = new TextField<String>("uName", new PropertyModel<String>(uModel, "userName"));
+		final TextField<String> uName = new TextField<String>("uName", new PropertyModel<String>(uModel, "userName"));
 		uName.setRequired(true);
 		uName.add(new PatternValidator(charPattern));
-		uName.setConvertEmptyInputStringToNull(false);
 		
-		// Adding DOB Component with DatePicker.
-		/*DateTextField uDOB = new DateTextField("uDOB",new PropertyModel<Date>(uModel, "userDOB"),new StyleDateConverter("S-", true));
+		// Adding DOB Component with DatePicker.		
+		DateTextField uDOB = DateTextField.forDatePattern("uDOB",new PropertyModel<Date>(uModel, "userDOB"),"dd-MM-yyyy");
 		DatePicker dPicker = new DatePicker();
-		dPicker.setShowOnFieldClick(true);
+		dPicker.setAutoHide(true);
 		uDOB.add(dPicker);
-		uDOB.setRequired(true);*/
-		
-		//Adding DOB without DatePicker.
-		TextField<Date> uDOB = new TextField<Date>("uDOB", new PropertyModel<Date>(uModel, "userDOB"));
 		uDOB.setRequired(true);
-		uDOB.add(DateValidator.range("01/01/1800", "31/31/2050"));
 		
 		// Adding Gender Radio Button.
 		RadioChoice<String> genderRadio = new RadioChoice<String>("uGender",
@@ -92,20 +60,49 @@ public class BasicDetails extends WebPage {
 		uLetter.setRequired(true);
 		uLetter.add(new PatternValidator(charPattern));
 		uLetter.setConvertEmptyInputStringToNull(false);
-	
-		// Adding Home Button.
-		Button HomeButton = new Button("HomeBtn") {
+		
+		// Adding Next Button.
+		Button nextButton = new Button("NextBtn") {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				setResponsePage(HomePage.class);
-				
+				setResponsePage(EducationDetails.class);
 			}
 		}.setDefaultFormProcessing(false);
 		
+		
+		// Adding Form
+		Form<Void> mForm = new Form<Void>("userForm") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onSubmit() {
+					
+				//Adding Error Messages.
+//				if(uName.getModelObject().isEmpty())
+//					uName.error("UserName is required");
+				
+				try {
+					info("Username : " + uModel.getName());
+					info("DOB : " + uModel.getDOB());
+					info("Gender : " + uModel.getGender());
+					info("Address : " + uModel.getAddress());
+					info("Cover Letter : " + uModel.getCoverLetter());
+					
+					//PageParameters pgParam = new PageParameters();
+					//pgParam.add("username",uModel.getName());
+					
+					//setResponsePage(EducationDetails.class,pgParam);
+				} catch (NullPointerException ex) {
+					System.out.println("Exception occured IN : " + ex.getLocalizedMessage());
+				}
+			}
+
+		};
 		
 		// Adding Components to Form
 		add(mForm);
@@ -114,7 +111,7 @@ public class BasicDetails extends WebPage {
 		mForm.add(genderRadio);
 		mForm.add(uAddress);
 		mForm.add(uLetter);
-		mForm.add(HomeButton);
+		mForm.add(nextButton);
 
 	}
 

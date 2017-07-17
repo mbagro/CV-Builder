@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>CV Details Page</title>
+
+	<style>
+	.center {
+	margin: auto;
+	width: 60%;
+	border: 3px solid #24a045;
+	padding: 5px;
+	}
+	</style>
+
+</head>
+
+<body bgcolor="brown">
+
+	<h2><center>User Details for CV</center></h2>
+			
+	<div class = "center">
+	<form wicket:id="cvForm" method="post">
+	
+	<!-- Adding Basic Details Section -->
+	
+	<h4>Username : </h4><textarea wicket:id="cvUserName" cols = "20" rows = "1"></textarea><br><br>
+	
+	<h4>Date of Birth : </h4><textarea wicket:id="cvUserDOB" cols = "20" rows = "1"></textarea><br>
+	
+	<h4>Gender : </h4><textarea wicket:id="cvUserGender" cols = "20" rows = "1"></textarea><br>
+	
+	<h4>Current Address : </h4><textarea wicket:id="cvUserCurrAddress" rows="5" cols="60"></textarea><br>
+	
+	<h4>Cover Letter : </h4><textarea wicket:id="cvUserCoverLetter" rows="5" cols="60"></textarea><br>
+	
+	<!-- Basic Details Section Ends -->
+	
+	</form>
+	</div>
+
+</body>
+
+</html>

@@ -44,9 +44,20 @@ public class HomePage extends WebPage {
 			}
 		};
 		
+		Link<String> cvPageLink = new Link<String>("cvPageLink") {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void onClick() {
+				setResponsePage(CVUserDetails.class);
+			}
+		};
+		
 	add(basicDetailsLink);
 	add(educationDetailsLink);
 	add(projectDetailsLink);
+	add(cvPageLink);
 	}
 	
 }

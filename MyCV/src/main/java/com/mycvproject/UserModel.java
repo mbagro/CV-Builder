@@ -5,52 +5,52 @@ package com.mycvproject;
 public class UserModel {
 
 	//Property Fields.
-	private String userName;
+	private transient String userName;
 	private String userDOB;
 	private String userGender;
 	private String userAddress;
 	private String userCoverLetter;
 	
 	//Setters and Getters for UserName.
-	public void setName(String name) {
-		userName = name;
+	public void setName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getName() {
-		return this.userName;
+		return userName;
 	}
 	
 	//Setters and Getters for UserDOB.
-	public void setDOB(String dob) {
-		userDOB = dob;
+	public void setDOB(String userDOB) {
+		this.userDOB = userDOB;
 	}
 	
 	public String getDOB() {
-		return this.userDOB;
+		return userDOB;
 	}
 	
 	
 	//Setters and Getters for UserGender.
-	public void setGender(String gender) {
-		userGender = gender;
+	public void setGender(String userGender) {
+		this.userGender = userGender;
 	}
 	
 	public String getGender() {
-		return this.userGender;
+		return userGender;
 	}
 	
 	//Setters and Getters for UserAddress.
-	public void setAddress(String address) {
-		userAddress = address;
+	public void setAddress(String userAddress) {
+		this.userAddress = userAddress;
 	}
 	
 	public String getAddress() {
-		return this.userAddress;
+		return userAddress;
 	}
 	
 	//Setters and Getters for UserCoverLetter.
-	public void setCoverLetter(String coverletter) {
-		userCoverLetter = coverletter;
+	public void setCoverLetter(String userCoverLetter) {
+		this.userCoverLetter = userCoverLetter;
 	}
 	
 	public String getCoverLetter() {
