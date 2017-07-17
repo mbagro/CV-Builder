@@ -18,12 +18,15 @@
 
 <body bgcolor="brown">
 
+	<div wicket:id="feedback"></div>
+
 	<h2><center>User Details for CV</center></h2>
 			
-	<div class = "center">
+	<div class = "center">	
 	<form wicket:id="cvForm" method="post">
 	
-	<!-- Adding Basic Details Section -->
+	<!-- Basic Details Section Starts-->
+	<h3><center><font color="#24b9c1">Basic Details</font></center></h3><br>
 	
 	<h4>Username : </h4><textarea wicket:id="cvUserName" cols = "20" rows = "1"></textarea><br><br>
 	
@@ -34,9 +37,47 @@
 	<h4>Current Address : </h4><textarea wicket:id="cvUserCurrAddress" rows="5" cols="60"></textarea><br>
 	
 	<h4>Cover Letter : </h4><textarea wicket:id="cvUserCoverLetter" rows="5" cols="60"></textarea><br>
-	
 	<!-- Basic Details Section Ends -->
 	
+	<!-- Education Details Section Starts-->
+	<h3><center><font color="#24b9c1">Education Details</font></center></h3><br>
+	
+	<h4><font color="#24b9c1"><span wicket:id="cvEduLabel1"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="cvEduArea1"></textarea><br>
+	
+	<h4><font color="#24b9c1"><span wicket:id="cvEduLabel2"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="cvEduArea2"></textarea><br>
+	
+	<h4><font color="#24b9c1"><span wicket:id="cvEduLabel3"></span></font></h4><textarea rows = "2" cols= "30" wicket:id="cvEduArea3"></textarea><br><br>
+	<!-- Education Section Ends -->
+	
+	<!-- Project Details Section Starts-->
+	<h3><center><font color="#24b9c1">Project Details</font></center></h3><br>
+	
+	<!-- Adding Project1 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPTitleLbl1"></span></font></h4>
+	<input type="text" wicket:id="cvPTitleSection1"><br>
+	
+	<!-- Adding Project1 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPDetailsLbl1"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="cvPDetailsSection1"></textarea><br>
+	
+		<!-- Adding Project2 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPTitleLbl2"></span></font></h4>
+	<input type="text" wicket:id="cvPTitleSection2"><br>
+	
+	<!-- Adding Project2 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPDetailsLbl2"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="cvPDetailsSection2"></textarea><br>
+	
+		<!-- Adding Project3 Title Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPTitleLbl3"></span></font></h4>
+	<input type="text" wicket:id="cvPTitleSection3"><br>
+	
+	<!-- Adding Project3 Details Added section -->
+	<h4><font color="#24b9c1"><span wicket:id="cvPDetailsLbl3"></span></font></h4>
+	<textarea rows="6" cols="40" wicket:id="cvPDetailsSection3"></textarea><br>
+	<!-- Project Details Section Ends -->
+	
+	<input type="submit" value= "Save Details!">
 	</form>
 	</div>
 

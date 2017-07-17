@@ -11,22 +11,31 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class ProjectDetails extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-	private UserPropModel uPropModel = new UserPropModel();
+	// private UserModel uModel = new UserModel();
 
-	// Education Area Enum.
-	private enum prjAreaStateEnum {
-		PRJ_AREA_0, PRJ_AREA_1, PRJ_AREA_2, PRJ_AREA_3;
-	};
+	// Education Area Constants.
+	protected final static int PRJ_AREA_0 = 0;
+	protected final static int PRJ_AREA_1 = 1;
+	protected final static int PRJ_AREA_2 = 2;
+	protected final static int PRJ_AREA_3 = 3;
 
-	private prjAreaStateEnum prjAreaState = prjAreaStateEnum.PRJ_AREA_0;
+	protected static int prjAreaState = PRJ_AREA_0;
 
-	public ProjectDetails(PageParameters pgParam) {
+	// Protected Project Details Input.
+	protected static TextField<String> pTitleSection1, pTitleSection2, pTitleSection3;
+	protected static TextArea<String> pDetailsSection1, pDetailsSection2, pDetailsSection3;
 
+	// Public Default Constructor Invoked by Init() If opened Direct from HomePage.
+	public ProjectDetails() {
+		this(BasicDetails.uModel);
+	}
+
+	// Public Custom Constructor Invoked on Form Response Page.
+	public ProjectDetails(final UserModel uModel) {
 		// Adding Project Title.
 		final TextField<String> pTitleText = new TextField<String>("projectTitle");
 		// pTitleText.setRequired(true);
@@ -44,12 +53,12 @@ public class ProjectDetails extends WebPage {
 		final Label pDetailsLabel1 = new Label("pDetailsLbl1", "Project 1 Details");
 		pDetailsLabel1.setVisible(false);
 
-		final TextField<String> pTitleSection1 = new TextField<String>("pTitleSection1", Model.of(""));
+		pTitleSection1 = new TextField<String>("pTitleSection1", Model.of(""));
 		pTitleSection1.setEnabled(false);
 		pTitleSection1.setVisible(false);
 		pTitleSection1.setOutputMarkupId(true);
 
-		final TextArea<String> pDetailsSection1 = new TextArea<String>("pDetailsSection1", Model.of(""));
+		pDetailsSection1 = new TextArea<String>("pDetailsSection1", Model.of(""));
 		pDetailsSection1.setEnabled(false);
 		pDetailsSection1.setVisible(false);
 		pDetailsSection1.setOutputMarkupId(true);
@@ -61,12 +70,12 @@ public class ProjectDetails extends WebPage {
 		final Label pDetailsLabel2 = new Label("pDetailsLbl2", "Project 2 Details");
 		pDetailsLabel2.setVisible(false);
 
-		final TextField<String> pTitleSection2 = new TextField<String>("pTitleSection2", Model.of(""));
+		pTitleSection2 = new TextField<String>("pTitleSection2", Model.of(""));
 		pTitleSection2.setEnabled(false);
 		pTitleSection2.setVisible(false);
 		pTitleSection2.setOutputMarkupId(true);
 
-		final TextArea<String> pDetailsSection2 = new TextArea<String>("pDetailsSection2", Model.of(""));
+		pDetailsSection2 = new TextArea<String>("pDetailsSection2", Model.of(""));
 		pDetailsSection2.setEnabled(false);
 		pDetailsSection2.setVisible(false);
 		pDetailsSection2.setOutputMarkupId(true);
@@ -78,12 +87,12 @@ public class ProjectDetails extends WebPage {
 		final Label pDetailsLabel3 = new Label("pDetailsLbl3", "Project 3 Details");
 		pDetailsLabel3.setVisible(false);
 
-		final TextField<String> pTitleSection3 = new TextField<String>("pTitleSection3", Model.of(""));
+		pTitleSection3 = new TextField<String>("pTitleSection3", Model.of(""));
 		pTitleSection3.setEnabled(false);
 		pTitleSection3.setVisible(false);
 		pTitleSection3.setOutputMarkupId(true);
 
-		final TextArea<String> pDetailsSection3 = new TextArea<>("pDetailsSection3", Model.of(""));
+		pDetailsSection3 = new TextArea<String>("pDetailsSection3", Model.of(""));
 		pDetailsSection3.setEnabled(false);
 		pDetailsSection3.setVisible(false);
 		pDetailsSection3.setOutputMarkupId(true);
@@ -97,20 +106,20 @@ public class ProjectDetails extends WebPage {
 			protected void onUpdate(AjaxRequestTarget target) {
 
 				// Project Area 1.
-				if (prjAreaState == prjAreaStateEnum.PRJ_AREA_0) {
-					pTitleSection1.setModelObject(uPropModel.getProjectTitle());
+				if (prjAreaState == PRJ_AREA_0) {
+					pTitleSection1.setModelObject(uModel.getProjectTitle());
 					target.add(pTitleSection1);
 				}
 
 				// Project Area 2.
-				else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_1) {
-					pTitleSection2.setModelObject(uPropModel.getProjectTitle());
+				else if (prjAreaState == PRJ_AREA_1) {
+					pTitleSection2.setModelObject(uModel.getProjectTitle());
 					target.add(pTitleSection2);
 				}
 
 				// Project Area 3.
-				else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_2) {
-					pTitleSection3.setModelObject(uPropModel.getProjectTitle());
+				else if (prjAreaState == PRJ_AREA_2) {
+					pTitleSection3.setModelObject(uModel.getProjectTitle());
 					target.add(pTitleSection3);
 
 				}
@@ -127,20 +136,20 @@ public class ProjectDetails extends WebPage {
 			protected void onUpdate(AjaxRequestTarget target) {
 
 				// Project Area 1.
-				if (prjAreaState == prjAreaStateEnum.PRJ_AREA_0) {
-					pDetailsSection1.setModelObject(uPropModel.getProjectDetails());
+				if (prjAreaState == PRJ_AREA_0) {
+					pDetailsSection1.setModelObject(uModel.getProjectDetails());
 					target.add(pDetailsSection1);
 				}
 
 				// Project Area 2.
-				else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_1) {
-					pDetailsSection2.setModelObject(uPropModel.getProjectDetails());
+				else if (prjAreaState == PRJ_AREA_1) {
+					pDetailsSection2.setModelObject(uModel.getProjectDetails());
 					target.add(pDetailsSection2);
 				}
 
 				// Project Area 3.
-				else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_2) {
-					pDetailsSection3.setModelObject(uPropModel.getProjectDetails());
+				else if (prjAreaState == PRJ_AREA_2) {
+					pDetailsSection3.setModelObject(uModel.getProjectDetails());
 					target.add(pDetailsSection3);
 				}
 
@@ -159,7 +168,7 @@ public class ProjectDetails extends WebPage {
 
 				try {
 
-					if (prjAreaState == prjAreaStateEnum.PRJ_AREA_0) {
+					if (prjAreaState == PRJ_AREA_0) {
 
 						// Checking For Empty Forms.
 						if (!(pTitleSection1.getModelObject().isEmpty())
@@ -171,12 +180,12 @@ public class ProjectDetails extends WebPage {
 							pDetailsSection1.setVisible(true);
 
 							info("Project 1 Added Succesfully!");
-							prjAreaState = prjAreaStateEnum.PRJ_AREA_1;
+							prjAreaState = PRJ_AREA_1;
 						} else
 							info("Form can't be empty!");
 					}
 
-					else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_1) {
+					else if (prjAreaState == PRJ_AREA_1) {
 
 						// Checking For Empty Forms.
 						if (!(pTitleSection2.getModelObject().isEmpty())
@@ -188,13 +197,13 @@ public class ProjectDetails extends WebPage {
 							pDetailsSection2.setVisible(true);
 
 							info("Project 2 Added Succesfully!");
-							prjAreaState = prjAreaStateEnum.PRJ_AREA_2;
+							prjAreaState = PRJ_AREA_2;
 						} else
 							info("Form can't be empty!");
 
 					}
 
-					else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_2) {
+					else if (prjAreaState == PRJ_AREA_2) {
 
 						// Checking For Empty Forms.
 						if (!(pTitleSection3.getModelObject().isEmpty())
@@ -206,7 +215,7 @@ public class ProjectDetails extends WebPage {
 							pDetailsSection3.setVisible(true);
 
 							info("Project 3 Added Succesfully!");
-							prjAreaState = prjAreaStateEnum.PRJ_AREA_3;
+							prjAreaState = PRJ_AREA_3;
 						} else
 							info("Form can't be empty!");
 
@@ -235,19 +244,19 @@ public class ProjectDetails extends WebPage {
 
 				// Enabling TextField to update.
 
-				if (prjAreaState == prjAreaStateEnum.PRJ_AREA_1) {
+				if (prjAreaState == PRJ_AREA_1) {
 					pTitleSection1.setEnabled(true);
 					pDetailsSection1.setEnabled(true);
 				}
 
-				else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_2) {
+				else if (prjAreaState == PRJ_AREA_2) {
 					pTitleSection2.setEnabled(true);
 					pDetailsSection2.setEnabled(true);
 				}
-				
-				else if(prjAreaState == prjAreaStateEnum.PRJ_AREA_3) {
-				pTitleSection3.setEnabled(true);
-				pDetailsSection3.setEnabled(true);
+
+				else if (prjAreaState == PRJ_AREA_3) {
+					pTitleSection3.setEnabled(true);
+					pDetailsSection3.setEnabled(true);
 				}
 
 			}
@@ -261,14 +270,13 @@ public class ProjectDetails extends WebPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				setResponsePage(CVUserDetails.class);
+				setResponsePage(new CVUserDetails(uModel));
 
-			} 
+			}
 		}.setDefaultFormProcessing(false);
 
 		// Adding Project Form.
-		Form<UserPropModel> pForm = new Form<UserPropModel>("pForm",
-				new CompoundPropertyModel<UserPropModel>(uPropModel)) {
+		Form<UserModel> pForm = new Form<UserModel>("pForm", new CompoundPropertyModel<UserModel>(uModel)) {
 
 			private static final long serialVersionUID = 1L;
 
@@ -276,44 +284,13 @@ public class ProjectDetails extends WebPage {
 			protected void onSubmit() {
 				super.onSubmit();
 
-				// Show the Updated Details.
-				try {
+				// Removing Required on Inputs if One Section is Inputed.
+				// pTitleText.setRequired(false);
+				// pDetailsArea.setRequired(false);
 
-					if (prjAreaState == prjAreaStateEnum.PRJ_AREA_1) {
+				setResponsePage(HomePage.class);
 
-						// Removing Required on Inputs if One Section is Inputed.
-						// pTitleText.setRequired(false);
-						// pDetailsArea.setRequired(false);
-
-						info("Project Title 1 : " + pTitleSection1.getModelObject());
-						info("Project Details 1 : " + pDetailsSection1.getModelObject());
-					}
-
-					else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_2) {
-
-						info("Project Title 1 : " + pTitleSection1.getModelObject());
-						info("Project Details 1 : " + pDetailsSection1.getModelObject());
-
-						info("Project Title 2 : " + pTitleSection2.getModelObject());
-						info("Project Details 2 : " + pDetailsSection2.getModelObject());
-					}
-
-					else if (prjAreaState == prjAreaStateEnum.PRJ_AREA_3) {
-						info("Project Title 1 : " + pTitleSection1.getModelObject());
-						info("Project Details 1 : " + pDetailsSection1.getModelObject());
-
-						info("Project Title 2 : " + pTitleSection2.getModelObject());
-						info("Project Details 2 : " + pDetailsSection2.getModelObject());
-
-						info("Project Title 3 : " + pTitleSection3.getModelObject());
-						info("Project Details 3 : " + pDetailsSection3.getModelObject());
-					}
-
-				} catch (NullPointerException e) {
-					info("Occured Exception " + e.getLocalizedMessage());
-				}
 			}
-
 		};
 
 		// Adding Form Components.
@@ -340,7 +317,6 @@ public class ProjectDetails extends WebPage {
 		pForm.add(addProjButton);
 		pForm.add(updateProjButton);
 		pForm.add(nextButton);
-
 	}
 
 }

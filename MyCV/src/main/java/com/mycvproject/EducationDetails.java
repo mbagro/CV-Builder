@@ -12,7 +12,6 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 public class EducationDetails extends WebPage {
 
@@ -24,24 +23,28 @@ public class EducationDetails extends WebPage {
 			"Graduate/BCA", "Graduate/BCOM", "Post Graduate/M.Tech", "Post Graduate/MCA", "Post Graduate/MCOM",
 			"Post Graduate/MSC", "Post Graduate/MBA", });
 
-	// User Property Model Field.
-	private UserPropModel uPropModel = new UserPropModel();
+	// Education Area Constants.
+	protected final static int EDU_AREA_0 = 0;
+	protected final static int EDU_AREA_1 = 1;
+	protected final static int EDU_AREA_2 = 2;
+	protected final static int EDU_AREA_3 = 3;
 
-	// Education Area Enum.
-	private enum eduAreaStateEnum {
-		EDU_AREA_0, EDU_AREA_1, EDU_AREA_2, EDU_AREA_3;
-	};
+	protected static int eduAreaState = EDU_AREA_0;
 
-	private eduAreaStateEnum eduAreaState = eduAreaStateEnum.EDU_AREA_0;
+	// Public Default Constructor Invoked by Init() If opened DIrect from HomePage.
+	public EducationDetails() {
+		this(BasicDetails.uModel);
+	}
 
-	public EducationDetails(PageParameters pgParam) {
+	// Public Custom Constructor Invoked on Form Response Page.
+	public EducationDetails(final UserModel uModel) {
 
 		// Adding FeedBack Panel.
 		add(new FeedbackPanel("feedback"));
 
 		// Adding Education DropDownList.
 		final DropDownChoice<String> eduDropDown = new DropDownChoice<String>("eduList",
-				new PropertyModel<String>(uPropModel, "educationChoice"), eduListChoice);
+				new PropertyModel<String>(uModel, "educationChoice"), eduListChoice);
 		eduDropDown.setRequired(true);
 		eduDropDown.setEnabled(true);
 
@@ -51,7 +54,7 @@ public class EducationDetails extends WebPage {
 
 		// Adding Education Selected Area1.
 		final TextArea<String> eduArea1 = new TextArea<String>("eduArea1",
-				new PropertyModel<String>(uPropModel, "educationSelected1"));
+				new PropertyModel<String>(uModel, "educationSelected1"));
 		eduArea1.setEnabled(false);
 		eduArea1.setVisible(false);
 		eduArea1.setOutputMarkupId(true);
@@ -80,7 +83,7 @@ public class EducationDetails extends WebPage {
 
 		// Adding Education Selected Area2.
 		final TextArea<String> eduArea2 = new TextArea<String>("eduArea2",
-				new PropertyModel<String>(uPropModel, "educationSelected2"));
+				new PropertyModel<String>(uModel, "educationSelected2"));
 		eduArea2.setEnabled(false);
 		eduArea2.setVisible(false);
 		eduArea2.setOutputMarkupId(true);
@@ -92,7 +95,7 @@ public class EducationDetails extends WebPage {
 
 		// Adding Education Selected Area3.
 		final TextArea<String> eduArea3 = new TextArea<String>("eduArea3",
-				new PropertyModel<String>(uPropModel, "educationSelected3"));
+				new PropertyModel<String>(uModel, "educationSelected3"));
 		eduArea3.setEnabled(false);
 		eduArea3.setVisible(false);
 		eduArea3.setOutputMarkupId(true);
@@ -108,26 +111,26 @@ public class EducationDetails extends WebPage {
 				super.onSubmit();
 
 				// Adding Education Areas.
-				if (eduAreaState == eduAreaStateEnum.EDU_AREA_0) {
+				if (eduAreaState == EDU_AREA_0) {
 					eduLabel1.setVisible(true);
 					eduArea1.setVisible(true);
-					eduArea1.setModelObject(uPropModel.getEducationChoice());
-					eduAreaState = eduAreaStateEnum.EDU_AREA_1;
+					eduArea1.setModelObject(uModel.getEducationChoice());
+					eduAreaState = EDU_AREA_1;
 
 					// Enable the DropDown List
 					eduDropDown.setEnabled(true);
-				} else if (eduAreaState == eduAreaStateEnum.EDU_AREA_1) {
+				} else if (eduAreaState == EDU_AREA_1) {
 					eduLabel2.setVisible(true);
 					eduArea2.setVisible(true);
-					eduArea2.setModelObject(uPropModel.getEducationChoice());
+					eduArea2.setModelObject(uModel.getEducationChoice());
 
-					eduAreaState = eduAreaStateEnum.EDU_AREA_2;
-				} else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2) {
+					eduAreaState = EDU_AREA_2;
+				} else if (eduAreaState == EDU_AREA_2) {
 					eduLabel3.setVisible(true);
 					eduArea3.setVisible(true);
-					eduArea3.setModelObject(uPropModel.getEducationChoice());
+					eduArea3.setModelObject(uModel.getEducationChoice());
 
-					eduAreaState = eduAreaStateEnum.EDU_AREA_3;
+					eduAreaState = EDU_AREA_3;
 				} else
 					info("Limit reached on Adding Education Areas!");
 			}
@@ -142,18 +145,18 @@ public class EducationDetails extends WebPage {
 			protected void onUpdate(AjaxRequestTarget target) {
 
 				// Education Areas.
-				if (eduAreaState == eduAreaStateEnum.EDU_AREA_0) {
-					eduArea1.setModelObject(uPropModel.getEducationChoice());
+				if (eduAreaState == EDU_AREA_0) {
+					eduArea1.setModelObject(uModel.getEducationChoice());
 					target.add(eduArea1);
 
 					// Enable the DropDown List
 					eduDropDown.setEnabled(true);
-				} else if (eduAreaState == eduAreaStateEnum.EDU_AREA_1) {
-					eduArea2.setModelObject(uPropModel.getEducationChoice());
+				} else if (eduAreaState == EDU_AREA_1) {
+					eduArea2.setModelObject(uModel.getEducationChoice());
 					target.add(eduArea2);
 
-				} else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2) {
-					eduArea3.setModelObject(uPropModel.getEducationChoice());
+				} else if (eduAreaState == EDU_AREA_2) {
+					eduArea3.setModelObject(uModel.getEducationChoice());
 					target.add(eduArea3);
 				}
 
@@ -171,13 +174,13 @@ public class EducationDetails extends WebPage {
 				super.onSubmit();
 
 				// Education Areas.
-				if (eduAreaState == eduAreaStateEnum.EDU_AREA_1)
+				if (eduAreaState == EDU_AREA_1)
 					eduArea1.setEnabled(true);
 
-				else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2)
+				else if (eduAreaState == EDU_AREA_2)
 					eduArea2.setEnabled(true);
 
-				else if (eduAreaState == eduAreaStateEnum.EDU_AREA_3)
+				else if (eduAreaState == EDU_AREA_3)
 					eduArea3.setEnabled(true);
 
 			}
@@ -192,30 +195,12 @@ public class EducationDetails extends WebPage {
 			protected void onSubmit() {
 				super.onSubmit();
 
-				try {
-
-					if (eduAreaState == eduAreaStateEnum.EDU_AREA_1)
-						info("Education 1 : " + eduArea1.getModelObject());
-
-					else if (eduAreaState == eduAreaStateEnum.EDU_AREA_2) {
-						info("Education 1 : " + eduArea1.getModelObject());
-						info("Education 2 : " + eduArea2.getModelObject());
-					}
-
-					else if (eduAreaState == eduAreaStateEnum.EDU_AREA_3) {
-						info("Education 1 : " + eduArea1.getModelObject());
-						info("Education 2 : " + eduArea2.getModelObject());
-						info("Education 3 : " + eduArea3.getModelObject());
-					}
-
-				} catch (NullPointerException ex) {
-					info("Exception on Input : " + ex.getLocalizedMessage());
-				}
+				setResponsePage(HomePage.class);
 
 			}
 
 		};
- 
+
 		// Adding Next Button.
 		Button nextButton = new Button("NextBtn") {
 
@@ -224,7 +209,7 @@ public class EducationDetails extends WebPage {
 			@Override
 			public void onSubmit() {
 				super.onSubmit();
-				setResponsePage(ProjectDetails.class);
+				setResponsePage(new ProjectDetails(uModel));
 
 			}
 		}.setDefaultFormProcessing(false);
@@ -241,6 +226,7 @@ public class EducationDetails extends WebPage {
 		eduForm.add(eduArea3);
 		eduForm.add(eduUpdateButton);
 		eduForm.add(nextButton);
+
 	}
 
 }
