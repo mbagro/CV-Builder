@@ -12,18 +12,22 @@ import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.validation.validator.PatternValidator;
 
 public class BasicDetails extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-	protected static UserModel uModel = new UserModel();
 	private ArrayList<String> genderChoices = new ArrayList<String>();
 	private final String charPattern = "[^0-9]*?"; // Discard numbers 0-9
 
-	// Public Constructor.
+	
+	// Public Default Constructor Invoked by Init() If opened DIrect from HomePage.
 	public BasicDetails() {
+		this(HomePage.uModel);
+	}
+
+	// Public Custom Constructor Invoked on Form Response Page.
+	public BasicDetails(final UserModel uModel) {
 
 		// Adding Gender Choices.
 		genderChoices.add("Male");
@@ -36,32 +40,37 @@ public class BasicDetails extends WebPage {
 		final TextField<String> uName = new TextField<String>("uName", new PropertyModel<String>(uModel, "userName"));
 		uName.setRequired(true);
 		uName.add(new PatternValidator(charPattern));
-
+		uName.setOutputMarkupId(true);
+		
 		// Adding DOB Component with DatePicker.
 		DateTextField uDOB = DateTextField.forDatePattern("uDOB", new PropertyModel<Date>(uModel, "userDOB"),
-				"dd-MM-yyyy");
+				"dd/MM/yyyy");
 		DatePicker dPicker = new DatePicker();
 		dPicker.setAutoHide(true);
 		uDOB.add(dPicker);
 		uDOB.setRequired(true);
+		uDOB.setOutputMarkupId(true);
 
 		// Adding Gender Radio Button.
 		RadioChoice<String> genderRadio = new RadioChoice<String>("uGender",
 				new PropertyModel<String>(uModel, "userGender"), genderChoices);
-
+		genderRadio.setOutputMarkupId(true);
+		
 		// Adding Address Component.
 		TextArea<String> uAddress = new TextArea<String>("uAddress", new PropertyModel<String>(uModel, "userAddress"));
 		uAddress.setRequired(true);
 		uAddress.add(new PatternValidator(charPattern));
 		uAddress.setConvertEmptyInputStringToNull(false);
-
+		uAddress.setOutputMarkupId(true);
+		
 		// Adding Cover Letter Component.
 		TextArea<String> uLetter = new TextArea<String>("uLetter",
 				new PropertyModel<String>(uModel, "userCoverLetter"));
 		uLetter.setRequired(true);
 		uLetter.add(new PatternValidator(charPattern));
 		uLetter.setConvertEmptyInputStringToNull(false);
-
+		uLetter.setOutputMarkupId(true);
+		
 		// Adding Next Button.
 		Button nextButton = new Button("NextBtn") {
 
@@ -74,15 +83,15 @@ public class BasicDetails extends WebPage {
 				// Passing uModel Object for Saving Details.
 				setResponsePage(new EducationDetails(uModel));
 			}
-		}.setDefaultFormProcessing(false);
+		}.setDefaultFormProcessing(true);
 
-		// Adding Form
-		Form<Void> mForm = new Form<Void>("userForm") {
-
+		//Adding Save Details Button.
+		Button saveButton = new Button("SaveBtn") {
+			
 			private static final long serialVersionUID = 1L;
-
+			
 			@Override
-			protected void onSubmit() {
+			public void onSubmit() {
 
 				// Adding Error Messages.
 				// if(uName.getModelObject().isEmpty())
@@ -91,8 +100,11 @@ public class BasicDetails extends WebPage {
 				setResponsePage(HomePage.class);
 
 			}
-
-		};
+		}.setDefaultFormProcessing(true);
+		
+		
+		// Adding Form
+		Form<Void> mForm = new Form<Void>("userForm");
 
 		// Adding Components to Form
 		add(mForm);
@@ -102,7 +114,7 @@ public class BasicDetails extends WebPage {
 		mForm.add(uAddress);
 		mForm.add(uLetter);
 		mForm.add(nextButton);
-
+		mForm.add(saveButton);
 	}
 
 }

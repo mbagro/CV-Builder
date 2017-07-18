@@ -33,7 +33,7 @@ public class EducationDetails extends WebPage {
 
 	// Public Default Constructor Invoked by Init() If opened DIrect from HomePage.
 	public EducationDetails() {
-		this(BasicDetails.uModel);
+		this(HomePage.uModel);
 	}
 
 	// Public Custom Constructor Invoked on Form Response Page.

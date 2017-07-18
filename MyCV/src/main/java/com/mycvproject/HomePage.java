@@ -6,7 +6,8 @@ import org.apache.wicket.markup.html.link.Link;
 public class HomePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
-
+	protected static UserModel uModel = new UserModel();
+	
 	//Adding Form.
 	Form<Void> cvForm = new Form<Void>("cvForm");
 	
@@ -19,7 +20,7 @@ public class HomePage extends WebPage {
 
 			@Override
 			public void onClick() {
-				setResponsePage(BasicDetails.class);
+				setResponsePage(new BasicDetails(uModel));
 			}
 		};
 		

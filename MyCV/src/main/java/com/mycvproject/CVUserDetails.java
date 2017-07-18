@@ -16,7 +16,7 @@ public class CVUserDetails extends WebPage{
 
 	//Public Default Constructor Invoked by Init() If opened Direct from HomePage.
 	public CVUserDetails() {
-		this(BasicDetails.uModel);
+		this(HomePage.uModel);
 	}
 	
 	//Public Custom Constructor Invoked on Form Response Page.
@@ -26,15 +26,14 @@ public class CVUserDetails extends WebPage{
 		add(new FeedbackPanel("feedback"));
 		
 		//Adding Form.
-		Form<UserModel> cvForm = new Form<UserModel>("cvForm",
-				new CompoundPropertyModel<UserModel>(uModel))  {
+		Form<Void> cvForm = new Form<Void>("cvForm")  {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
-				
+				setResponsePage(HomePage.class);
 			}
 		};
 		
@@ -206,6 +205,7 @@ public class CVUserDetails extends WebPage{
 				cvPDetailsLbl2.setVisible(true);
 				cvPTitleSection2.setVisible(true);
 				cvPDetailsSection2.setVisible(true);
+				
 				cvPTitleLbl3.setVisible(true);
 				cvPDetailsLbl3.setVisible(true);
 				cvPTitleSection3.setVisible(true);

@@ -1,11 +1,15 @@
 package com.mycvproject;
 
+import java.io.Serializable;
+
 //User Property Model POJO Class for User Basic Details.
 
-public class UserModel {
+public class UserModel implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	
 	// Property Fields for User Details.
-	private transient String userName;
+	private String userName;
 	private String userDOB;
 	private String userGender;
 	private String userAddress;

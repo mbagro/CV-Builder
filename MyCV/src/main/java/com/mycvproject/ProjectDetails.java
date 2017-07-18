@@ -31,7 +31,7 @@ public class ProjectDetails extends WebPage {
 
 	// Public Default Constructor Invoked by Init() If opened Direct from HomePage.
 	public ProjectDetails() {
-		this(BasicDetails.uModel);
+		this(HomePage.uModel);
 	}
 
 	// Public Custom Constructor Invoked on Form Response Page.
