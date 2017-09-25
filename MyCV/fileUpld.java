@@ -92,3 +92,20 @@ public class FileUploadPage extends WebPage {
 	
 	
 }
+
+			public FileUploadStep() {
+				final FileUploadField fileUploadField = new FileUploadField("fileUpload");
+				fileUploadField.setRequired(true);
+				fileUploadField.add(new IValidator<List<FileUpload>>() {
+					@Override
+					public void validate(final IValidatable<List<FileUpload>> validatable) {
+						final String contentType = validatable.getValue().get(0).getContentType();
+						if (!"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet".equals(contentType)) {
+							final ValidationError validationError = new ValidationError("Unknown content-type: " + contentType);
+							validationError.setVariable("contentType", contentType);
+							validatable.error(validationError);
+						};
+					}
+				});
+				add(fileUploadField);
+			}
